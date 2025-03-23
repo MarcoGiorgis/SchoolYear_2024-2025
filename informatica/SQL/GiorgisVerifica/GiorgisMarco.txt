@@ -1,0 +1,56 @@
+CREATE TABLE "cachet" (
+	"id_chacet"	INTEGER NOT NULL,
+	"person_id"	INTEGER NOT NULL,
+	"movie_id"	INTEGER NOT NULL,
+	"value_chachet"	DECIMAL(10,2) DEFAULT NULL,
+	PRIMARY KEY("id_chacet" AUTOINCREMENT),
+	FOREIGN KEY("movie_id") REFERENCES "movie"("movie_id") ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY("person_id") REFERENCES "person"("person_id") ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+ES1
+SELECT movie.title
+FROM movie, country, production_country
+WHERE country.country_name LIKE "%Kazakhstan%"
+AND production_country.country_id = country.country_id
+AND production_country.movie_id = movie.movie_id
+
+ES2
+SELECT person.person_name
+FROM person, movie, movie_cast
+WHERE movie.overview LIKE "%vampires%"
+AND strftime("%Y", movie.release_date) BETWEEN "2003" AND "2005"
+AND movie_cast.movie_id = movie.movie_id
+AND movie_cast.person_id = person.person_id
+
+ES3
+SELECT person.person_name, movie_cast.character_name, movie.title
+FROM person, movie_cast, movie, gender
+WHERE gender LIKE "%Female%"
+AND movie_cast.movie_id = movie.movie_id
+AND movie_cast.person_id = person.person_id
+AND movie_cast.gender_id = gender.gender_id
+
+ES4
+SELECT production_company.company_name, sum(movie.budget) as "SommaBudget"
+FROM production_company, movie_company, movie
+WHERE movie_company.company_id = production_company.company_id
+AND movie_company.movie_id = movie.movie_id
+GROUP BY movie_company.company_id 
+
+ES5
+SELECT person.person_name
+FROM person, movie, movie_cast
+WHERE movie.title LIKE "%Pirates of the Caribbean%"
+AND movie_cast.person_id = person.person_id
+AND movie_cast.movie_id = movie.movie_id
+GROUP BY movie_cast.person_id
+HAVING count(*) > 1
+
+ES6
+SELECT genre.genre_name, sum(movie.vote_count) AS "votiRaccolti"
+FROM movie, movie_genres, genre
+WHERE movie_genres.genre_id = genre.genre_id
+AND movie_genres.movie_id = movie.movie_id
+GROUP BY genre.genre_name
+ORDER BY "votiRaccolti" DESC

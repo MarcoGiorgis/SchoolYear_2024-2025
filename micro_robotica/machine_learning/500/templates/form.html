@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <title>Inserisci dati auto</title>
+</head>
+<body>
+    <h2>Inserisci dati auto</h2>
+    <form method="post">
+        <label for="modelEnc">modelEnc:</label>
+        <select name="modelEnc" required>
+            <option value="pop">Pop</option>
+            <option value="lounge">Lounge</option>
+            <option value="sport">Sport</option>
+            <option value="start">Start</option>
+        </select><br>
+
+        <label for="engine_power">engine_power:</label>
+        <input type="number" name="engine_power" required><br>
+
+        <label for="trasmissionEnc">trasmissionEnc:</label>
+        <select name="trasmissionEnc" required>
+            <option value="manual">Manual</option>
+            <option value="automatic">Automatic</option>
+        </select><br>
+
+        <label for="age_in_days">age_in_days:</label>
+        <input type="number" name="age_in_days" required><br>
+
+        <label for="km">km:</label>
+        <input type="number" name="km" required><br>
+
+        <label for="previous_owners">previous_owners:</label>
+        <input type="number" name="previous_owners" required><br>
+
+        <label for="lat">lat:</label>
+        <input type="text" name="lat" required><br>
+
+        <label for="lon">lon:</label>
+        <input type="text" name="lon" required><br>
+
+        <button type="submit">Invia</button>
+    </form>
+</body>
+</html>

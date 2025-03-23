@@ -1,0 +1,7 @@
+CREATE TABLE sala(
+	codSala INTEGER UNIQUE,
+	posti INTEGER NOT NULL CHECK (posti > 0),
+	nome CHAR(20) NOT NULL,
+	citta CHAR(20) NOT NULL,
+	PRIMARY KEY (codSala)
+)

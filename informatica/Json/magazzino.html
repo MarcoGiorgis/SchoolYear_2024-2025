@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giorgis</title>
+</head>
+
+<body>
+    <div></div>
+    <form id="cocktailForm">
+        <label>Nome codice: <input type="text" size="20" id="nomeProdotto"></label><br>
+        <input type="submit" id="fsubmitcercaMagazzino" value="Cerca">
+    </form>
+    </div>
+
+    <script>
+        const cerca = document.getElementById("fsubmitcercaMagazzino");
+        const nomeProdotto = document.getElementById("nomeProdotto");
+        let url = `./magazzino.json`;
+
+        cerca.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            let cardCocktail = document.getElementById("cardMagazzino");
+
+            fetch(url)
+                .then(response => response.json())
+                .then(dati => {
+                    let trovato = false;
+                    const prodotto = dati;
+                    const codiceProdotto = nomeProdotto.value;
+                    console.log(prodotto);
+
+                    prodotto.forEach(element => {
+                        if (element.codiceProd == codiceProdotto && trovato == false) {
+                            console.log(element);
+                            trovato = true;
+                        } 
+                    });
+                    if (!trovato){
+                        console.log("Prodotto non trovato")
+                    }
+                })
+        })
+    </script>
+
+</body>
+
+</html>

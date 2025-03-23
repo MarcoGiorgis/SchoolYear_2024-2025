@@ -1,0 +1,3 @@
+SELECT *
+FROM alunni
+WHERE media_voti BETWEEN 6 AND 7

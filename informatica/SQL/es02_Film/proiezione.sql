@@ -1,0 +1,10 @@
+CREATE TABLE proiezione(
+	codProiezione INTEGER UNIQUE,
+	codF INTEGER NOT NULL,
+	codS INTEGER NOT NULL,
+	incasso REAL NOT NULL CHECK (incasso > 0),
+	dataProiezione date NOT NULL,
+	PRIMARY KEY (codProiezione),
+	FOREIGN KEY("codF") REFERENCES "film"("codFilm") ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY("codS") REFERENCES "sala"("codSala") ON DELETE RESTRICT ON UPDATE CASCADE
+)

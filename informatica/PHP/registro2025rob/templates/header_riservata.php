@@ -1,0 +1,41 @@
+<?php
+
+/*************************************** */
+/* CONTROLLO DELLA SESSIONE: se i dati del login sono corretti in 'logincheck.php'
+   viene settato $_SESSION['login']. 
+   Il controllo qui di seguito controlla se si può accedere alla pagina perchè considerata
+    riservata, se non si era passati dal login si viene rimandati alla pagina index.php*/
+
+session_start();
+
+if (!isset($_SESSION['login']))
+   header("location: ./index.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Riservato</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.css">
+    
+</head>
+<body>
+    
+<header>    
+    <div id="header_top">
+        <div class="titolo_bianco">Registro ITIS</div>
+    </div>
+    <div id="header_down">
+        <?php
+            if (isset($_SESSION['login'])){
+                echo "Area riservata: <b>".$_SESSION['nome']." ".$_SESSION['cognome']."</b> <button onClick=\"location.href='./index.php'\" class=\"buttonform\">logout</button>";
+            }
+        ?>
+    </div>
+</header>
+
+<section>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Prediction</title>
+    <style>
+        /* Stile generale */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Contenitore del form */
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 350px;
+        }
+
+        /* Stile dei campi input */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Pulsante */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #ff8c00;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff5e00;
+        }
+
+        /* Stile della previsione */
+        .prediction {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Predict Car Price</h2>
+    <div class="form-container">
+        <form method="post">
+            <label for="model">Model:</label>
+            <select name="model" id="model" required>
+                <option value="pop">Pop</option>
+                <option value="lounge">Lounge</option>
+                <option value="sport">Sport</option>
+            </select>
+
+            <label for="engine_power">Engine Power:</label>
+            <input type="number" name="engine_power" required placeholder="Enter engine power">
+
+            <label for="transmission">Transmission:</label>
+            <select name="transmission" id="transmission" required>
+                <option value="automatic">Automatic</option>
+                <option value="manual">Manual</option>
+            </select>
+
+            <label for="age_in_days">Age in Days:</label>
+            <input type="number" name="age_in_days" required placeholder="Enter age in days">
+
+            <label for="km">Kilometers:</label>
+            <input type="number" name="km" required placeholder="Enter kilometers">
+
+            <label for="previous_owners">Previous Owners:</label>
+            <input type="number" name="previous_owners" required placeholder="Enter previous owners">
+
+            <label for="lat">Latitude:</label>
+            <input type="text" name="lat" required placeholder="Enter latitude">
+
+            <label for="lon">Longitude:</label>
+            <input type="text" name="lon" required placeholder="Enter longitude">
+
+            <button type="submit" class="btn">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="prediction">
+                Prediction: {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

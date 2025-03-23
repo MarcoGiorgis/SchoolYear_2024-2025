@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/home" method="POST">
+        <label for="numero">Inserire uno stato di massimo 80 caratteri: </label>
+        <input type="text" name="action-stato" />
+        <input type="submit" value="invia stato" name="action-invia" />
+        
+        <h3>Stato casuale: </h3>
+        <p>{{user}}</p>
+        <p>{{stato}}</p>
+
+        <input type="submit" value="logout" name="action-logout" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #080710;
+}
+
+h1 {
+    margin-bottom: 30px; /* Spazio tra l'intestazione e il form */
+    color: white;
+    font-size: 36px; /* Più grande per evidenziare */
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px; /* Maggiore distanza tra i pulsanti */
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.13);
+    padding: 30px; /* Form leggermente più grande */
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    margin-bottom: 3%;
+}
+
+input[type="submit"] {
+    width: 100px; /* Pulsanti più larghi */
+    height: 60px; /* Pulsanti più alti */
+    font-size: 18px; /* Testo più grande */
+    border: none;
+    border-radius: 8px; /* Arrotondamenti maggiori */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, border 0.2s;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.1);
+    color: black;
+    border: 2px solid black; /* Aggiungi il bordo sottile nero */
+}
+
+input[name="action1"] { /* avanti */
+    grid-column: 2;
+    grid-row: 1;
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[name="action2"] { /* indietro */
+    grid-column: 2;
+    grid-row: 3;
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[name="action3"] { /* destra */
+    grid-column: 3;
+    grid-row: 2;
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[name="action4"] { /* sinistra */
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[name="action5"] { /* stop */
+    grid-column: 2;
+    grid-row: 2;
+    background-color: red;
+    color: white;
+}
+
+input[name="action6"] { /* log-out */
+    grid-column: 2;
+    grid-row: 4;
+    background-color: orange;
+    color: white;
+    height: 50px; /* Altezza leggermente più grande */
+    font-size: 16px; /* Testo più grande */
+}

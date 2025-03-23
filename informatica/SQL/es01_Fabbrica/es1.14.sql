@@ -1,0 +1,3 @@
+SELECT DISTINCT codOperaio
+FROM sedeB
+ORDER BY codR

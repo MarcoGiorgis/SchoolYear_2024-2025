@@ -1,0 +1,2 @@
+SELECT*
+FROM sedeA, responsabili

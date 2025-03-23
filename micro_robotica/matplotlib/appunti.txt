@@ -1,0 +1,29 @@
+dati = pd.read_csv("penguins_size.csv", header=None, na_values=9999.9) 
+dati.dropna(inplace=True)
+dati.head(10)
+
+pixels_columns = list(dati.columns)[:-1] -> per effettuare una unica lista
+
+fig, axs = plt.subplots(nrows=4, ncols=4, figsize=(15,15))
+axs.reshape(-1)
+
+immagine = plt.imread(path)
+axsr[i].imshow(immagine)
+
+axsr[i].set_axis_off()
+ax.grid()
+
+axs[i, j].scatter(x, y, s=15, c=spc_color, alpha=0.5)
+axs[i, j].hist(x, edgecolor="k", color="red")
+axs[0].plot(tempo, btc_high, color="green", label="high", linewidth=0.8, linestyle = "--")
+axs[0].legend()
+
+plt.suptitle("Pokemon", fontsize=16, fontweight="bold", y=0.92) -> titolo inziale
+axs[i].set_title(pokemon[0])
+axs[i, j].set_xlabel(icol)
+axs[i, j].set_ylabel("Frequenza assoluta")
+
+axs[i, j].set_facecolor("yellow")
+
+plt.savefig("pokemon_grid.png", dpi=300, bbox_inches="tight") -> salvataggio immagine
+plt.show()

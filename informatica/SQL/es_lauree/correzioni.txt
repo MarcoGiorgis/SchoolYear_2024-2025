@@ -1,0 +1,68 @@
+/* 8- Matricola e nome degli studenti che non frequentano nessun corso */
+
+SELECT STUDENTI.Matricola, STUDENTI.NomeS
+FROM STUDENTI
+WHERE STUDENTI.Matricola NOT IN (
+	SELECT FREQUENTA.Matricola
+	FROM FREQUENTA
+	)
+
+/* 9- Il Codice ed il Nome dei docenti dei Corsi che non sono frequentati da nessuno studente */
+SELECT DOCENTI.CodDocente, DOCENTI.NomeD
+FROM DOCENTI, CORSI 
+WHERE DOCENTI.CodDocente = CORSI.CodCorso
+AND DOCENTI.CodDocente NOT IN (
+	SELECT CORSI.CodDocente
+	FROM CORSI, FREQUENTA
+	WHERE CORSI.CodCorso = FREQUENTA.CodCorso
+	)
+
+/* 10- Matricola e nome degli studenti che seguono solo corsi di docenti del dipartimento di Storia */
+
+SELECT STUDENTI.Matricola, STUDENTI.NomeS
+FROM STUDENTI, FREQUENTA
+WHERE STUDENTI.Matricola = FREQUENTA.Matricola
+AND FREQUENTA.CodCorso NOT IN (
+	SELECT CORSI.CodCorso
+	FROM CORSI, DOCENTI
+	WHERE CORSI.CodDocente = DOCENTI.CodDocente
+	AND DOCENTI.Dipartimento NOT LIKE "%Storia%"
+	)
+
+/* 11- Il CodCorso dei corsi seguiti solo da studenti che appartengono al Corso di Laurea Triennale
+in SBC */
+
+SELECT DISTINCT FREQUENTA.CodCorso
+FROM FREQUENTA
+WHERE FREQUENTA.Matricola NOT IN (
+	SELECT DISTINCT s.Matricola
+	FROM STUDENTI s, CORSIDILAUREA c
+	WHERE s.CorsoLaurea = c.CorsoLaurea 
+	AND (c.TipoLaurea != "Triennale" OR c.CorsoLaurea != "SBC")
+	)
+
+
+/* 12- Nome e CodDocente dei docenti che insegnano solo corsi seguiti da più di 5 studenti */
+
+SELECT DOCENTI.NomeD, DOCENTI.CodDocente
+FROM DOCENTI, CORSI
+WHERE DOCENTI.CodDocente = CORSI.CodDocente
+AND CORSI.CodCorso NOT IN (
+	SELECT CORSI.CodCorso
+	FROM CORSI, FREQUENTA
+	WHERE CORSI.CodCorso = FREQUENTA.CodCorso
+	GROUP BY FREQUENTA.CodCorso
+	HAVING count(*) <= 5
+	)
+
+/*7- Per ogni studente della Facoltà di Lettere e Filisofia, la matricola ed il numero di corsi seguiti*/
+
+SELECT STUDENTI.Matricola, count(*) AS "Numero di corsi"
+FROM STUDENTI, CORSIDILAUREA, FREQUENTA
+WHERE STUDENTI.CorsoLaurea = CORSIDILAUREA.CorsoLaurea
+AND STUDENTI.Matricola = FREQUENTA.Matricola
+AND CORSIDILAUREA.Facolta LIKE "%Lettere%" 
+AND CORSIDILAUREA.Facolta LIKE "%Filosofia%"
+GROUP BY FREQUENTA.Matricola
+
+

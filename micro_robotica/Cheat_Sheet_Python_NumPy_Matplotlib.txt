@@ -1,0 +1,185 @@
+Cheat-Sheet Python, NumPy e Matplotlib
+
+Funzioni e Metodi di NumPy
+
+np.array
+Descrizione: Crea un array NumPy dai dati forniti, sia da una lista Python che da una struttura di dati compatibile.
+Esempio: array = np.array([1., 2., 3., 4.])
+
+np.array (con dtype)
+Descrizione: Crea un array NumPy specificando il tipo di dati.
+Esempio: array = np.array([1, 2, 3, 4], dtype=np.float64)
+
+np.zeros
+Descrizione: Crea un array di zeri di dimensione specificata. Se si usa (n, m), crea una matrice.
+Esempio: array = np.zeros(5, dtype=np.int64)
+
+np.ones
+Descrizione: Crea un array di uni di dimensione specificata.
+Esempio: array = np.ones(7, dtype=np.float16)
+
+array.dtype
+Descrizione: Restituisce il tipo di dati degli elementi dell'array.
+Esempio: array.dtype
+
+array.shape
+Descrizione: Restituisce la forma (dimensioni) dell'array.
+Esempio: array.shape
+
+array.copy
+Descrizione: Crea una copia dell'array.
+Esempio: array.copy()
+
+array.reshape
+Descrizione: Modifica la forma dell'array senza cambiare i dati.
+Esempio: array.reshape((2, 5))
+
+np.exp
+Descrizione: Calcola l'esponenziale e^x di ogni elemento dell'array.
+Esempio: np.exp(array)
+
+np.isclose
+Descrizione: Confronta elementi tra due array e restituisce True se sono vicini.
+Esempio: np.isclose(array1, array2)
+
+np.max
+Descrizione: Restituisce il valore massimo nell'array.
+Esempio: np.max(array)
+
+np.min
+Descrizione: Restituisce il valore minimo nell'array.
+Esempio: np.min(array)
+
+np.sum
+Descrizione: Calcola la somma degli elementi dell'array.
+Esempio: np.sum(array)
+
+np.mean
+Descrizione: Calcola la media dei valori nell'array.
+Esempio: np.mean(array)
+
+np.std
+Descrizione: Calcola la deviazione standard degli elementi dell'array.
+Esempio: np.std(array)
+
+np.round
+Descrizione: Arrotonda i valori nell'array al numero di decimali specificato.
+Esempio: np.round(array, 1)
+
+np.logical_not
+Descrizione: Applica l'operazione logica not a ogni elemento.
+Esempio: np.logical_not(array)
+
+np.logical_or
+Descrizione: Applica or logico elemento per elemento tra due array.
+Esempio: np.logical_or(array1, array2)
+
+Indicizzazione e Slicing
+Descrizione: Utilizza le regole di indicizzazione e slicing delle liste o stringhe Python.
+Esempio: array[-1]
+
+Assegnamento con Indicizzazione e Slicing
+Descrizione: Permette di assegnare valori a specifiche porzioni di un array.
+Esempio: array[:3] = 9
+
+Broadcasting
+Descrizione: Permette di assegnare valori a specifiche porzioni di un array, specificando il numero esatto di elementi.
+Esempio: array[:3] = np.array([1, 2, 3])
+
+np.arange
+Descrizione: Crea un array con numeri equidistanti entro un intervallo definito.
+Esempio: array = np.arange(4, 12)
+
+Operazioni Matematiche su Array
+Descrizione: Gli array di NumPy si comportano come i vettori in matematica, permettendo operazioni elemento per elemento.
+Esempio: nuova_posizione = punto + spostamento
+
+np.linspace
+Descrizione: Genera valori equispaziati tra due estremi specificati.
+Esempio: array = np.linspace(0., 10., 21)
+
+np.sin
+Descrizione: Calcola il seno di ciascun valore nell'array, utilizzando radianti.
+Esempio: y = np.sin(x)
+
+np.random.randint
+Descrizione: Genera numeri casuali interi tra due estremi specificati.
+Esempio: np.random.randint(1, 7, 12)
+
+np.count_nonzero
+Descrizione: Conta il numero di elementi non nulli (o valori True) in un array booleano.
+Esempio: np.count_nonzero(alice_vince)
+
+np.random.uniform
+Descrizione: Genera un array di numeri casuali secondo una distribuzione uniforme.
+Esempio: matrix = np.random.uniform(0., 1., (20, 20))
+
+np.roll
+Descrizione: Esegue uno spostamento ciclico sugli elementi di un array.
+Esempio: np.roll(array, -i)[:4]
+
+np.sqrt
+Descrizione: Calcola la radice quadrata dell'argomento fornito.
+Esempio: deviazione_std = np.sqrt(5)
+
+np.random.normal
+Descrizione: Genera un array di numeri casuali secondo una distribuzione normale.
+Esempio: dati = np.random.normal(media, deviazione_std, num_campioni)
+
+np.random.choice
+Descrizione: Seleziona casualmente un numero specificato di elementi da un intervallo.
+Esempio: indici_errori = np.random.choice(num_campioni, num_errori)
+
+np.where
+Descrizione: Ritorna gli indici degli elementi che soddisfano una condizione.
+Esempio: np.where(np.logical_and((array_sx < array)[:-1], (array_dx < array)[:-1]))
+
+np.logical_and
+Descrizione: Restituisce un array booleano, in cui ogni elemento è True se entrambi i corrispondenti valori in due array booleani sono True.
+Esempio: np.logical_and((array_sx < array)[:-1], (array_dx < array)[1:])
+
+Funzioni e Metodi di Matplotlib
+
+plt.subplots
+Descrizione: Crea una figura (fig) e assi (ax) per disegnare i grafici, con dimensioni specificate da figsize.
+Esempio: fig, ax = plt.subplots(figsize=(4, 2))
+
+plt.plot
+Descrizione: Traccia una linea 2D sul grafico.
+Esempio: plt.plot(x, y)
+
+plt.imshow
+Descrizione: Visualizza una matrice o immagine come un'immagine. Accetta colormaps (cmap) come "Greys" o altri per cambiare la scala di colore.
+Esempio: plt.imshow(array2d, cmap="Greys")
+
+plt.imread
+Descrizione: Legge un'immagine da file e la restituisce come array.
+Esempio: image = plt.imread("./peppone.jpeg")
+
+ax.set_ylim
+Descrizione: Imposta i limiti dell'asse Y del grafico.
+Esempio: ax.set_ylim([-10, 10])
+
+ax.set_title
+Descrizione: Assegna un titolo al grafico.
+Esempio: ax.set_title("Questo è il titolo del grafico", fontsize=10)
+
+ax.set_title (con formule matematiche)
+Descrizione: Imposta il titolo del grafico, supportando formule matematiche.
+Esempio: ax.set_title(r'$y = \sin(x)$')
+
+ax.grid
+Descrizione: Aggiunge una griglia al grafico.
+Esempio: ax.grid(True)
+
+ax.legend
+Descrizione: Visualizza la legenda del grafico.
+Esempio: ax.legend(['Serie 1', 'Serie 2'])
+
+plt.show
+Descrizione: Mostra la figura e i grafici disegnati su di essa, rendendo visibile la rappresentazione grafica.
+Esempio: plt.show()
+
+ax.set_xlabel / ax.set_ylabel
+Descrizione: Imposta le etichette degli assi X o Y.
+Esempio: ax.set_xlabel("x") / ax.set_ylabel("y")

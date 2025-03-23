@@ -1,0 +1,151 @@
+NumPy - Funzioni e Metodi
+
+np.array
+Crea un array a partire da dati come una lista Python o un'altra struttura compatibile.
+Esempio: array = np.array([1., 2., 3., 4.])
+
+np.array (con dtype)
+Genera un array NumPy con un tipo di dato specifico.
+Esempio: array = np.array([1, 2, 3, 4], dtype=np.float64)
+
+np.zeros
+Restituisce un array di zeri di una dimensione specificata; con (n, m), crea una matrice.
+Esempio: array = np.zeros(5, dtype=np.int64)
+
+np.ones
+Crea un array di uni con dimensione specificata.
+Esempio: array = np.ones(7, dtype=np.float16)
+
+array.dtype
+Mostra il tipo di dati contenuti nell’array.
+Esempio: array.dtype
+
+array.shape
+Restituisce la forma (dimensione) dell’array.
+Esempio: array.shape
+
+array.copy
+Crea una copia indipendente dell'array.
+Esempio: array.copy()
+
+array.reshape
+Cambia la forma dell'array senza alterare i dati originali.
+Esempio: array.reshape((2, 5))
+
+np.exp
+Calcola l’esponenziale e^x per ciascun elemento.
+Esempio: np.exp(array)
+
+np.isclose
+Confronta elementi tra due array e ritorna True dove sono simili.
+Esempio: np.isclose(array1, array2)
+
+np.max / np.min
+Restituisce il valore massimo/minimo in un array.
+Esempio: np.max(array) / np.min(array)
+
+np.sum
+Somma gli elementi dell’array.
+Esempio: np.sum(array)
+
+np.mean
+Calcola la media degli elementi.
+Esempio: np.mean(array)
+
+np.std
+Restituisce la deviazione standard dell’array.
+Esempio: np.std(array)
+
+np.round
+Arrotonda i valori dell’array al numero di decimali specificato.
+Esempio: np.round(array, 1)
+
+np.logical_not / np.logical_or
+Esegue l’operazione logica not su un array, o or elemento per elemento su due array.
+Esempio: np.logical_not(array), np.logical_or(array1, array2)
+
+Indicizzazione e Slicing
+Permette di accedere e modificare parti di un array usando indici o intervalli, come nelle liste Python.
+Esempio: array[-1], array[:3] = 9
+
+np.arange
+Genera un array di numeri in un intervallo, con incrementi regolari.
+Esempio: array = np.arange(4, 12)
+
+np.linspace
+Crea un array con valori equispaziati tra due estremi.
+Esempio: array = np.linspace(0., 10., 21)
+
+np.sin
+Calcola il seno dei valori in un array (in radianti).
+Esempio: y = np.sin(x)
+
+np.random.randint
+Genera numeri interi casuali in un intervallo specifico.
+Esempio: np.random.randint(1, 7, 12)
+
+np.count_nonzero
+Conta i valori diversi da zero (o True) in un array booleano.
+Esempio: np.count_nonzero(alice_vince)
+
+np.random.uniform
+Genera numeri casuali in un intervallo secondo una distribuzione uniforme.
+Esempio: matrix = np.random.uniform(0., 1., (20, 20))
+
+np.roll
+Esegue uno spostamento ciclico sugli elementi.
+Esempio: np.roll(array, -i)[:4]
+
+np.sqrt
+Calcola la radice quadrata di ciascun elemento.
+Esempio: np.sqrt(5)
+
+np.random.normal
+Genera numeri casuali secondo una distribuzione normale (gaussiana).
+Esempio: dati = np.random.normal(media, deviazione_std, num_campioni)
+
+np.where
+Ritorna gli indici che soddisfano una certa condizione.
+Esempio: np.where(array > 5)
+
+Matplotlib - Funzioni e Metodi
+
+plt.subplots
+Crea una figura e assi, che fungono da contesto per i grafici.
+Esempio: fig, ax = plt.subplots(figsize=(4, 2))
+
+plt.plot
+Disegna una linea continua 2D.
+Esempio: plt.plot(x, y)
+
+plt.imshow
+Visualizza una matrice o un'immagine come immagine con possibilità di scegliere la mappa di colori (cmap).
+Esempio: plt.imshow(array2d, cmap="Greys")
+
+plt.imread
+Carica un'immagine da file e la restituisce come array.
+Esempio: image = plt.imread("file.jpeg")
+
+ax.set_ylim
+Imposta i limiti dell’asse Y.
+Esempio: ax.set_ylim([-10, 10])
+
+ax.set_title
+Aggiunge un titolo al grafico, con supporto per formule matematiche.
+Esempio: ax.set_title(r'$y = \sin(x)$')
+
+ax.grid
+Attiva/disattiva la griglia sul grafico.
+Esempio: ax.grid(True)
+
+ax.legend
+Aggiunge una legenda al grafico per descrivere le serie tracciate.
+Esempio: ax.legend(['Serie 1', 'Serie 2'])
+
+plt.show
+Visualizza il grafico disegnato.
+Esempio: plt.show()
+
+ax.set_xlabel / ax.set_ylabel
+Assegna etichette agli assi X o Y del grafico.
+Esempio: ax.set_xlabel("Asse X"), ax.set_ylabel("Asse Y")

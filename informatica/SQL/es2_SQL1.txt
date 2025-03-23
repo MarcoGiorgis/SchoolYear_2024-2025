@@ -1,0 +1,8 @@
+ES1
+SELECT Opere.codice, Opere.titolo
+FROM Opere, Artisti2, Musei
+WHERE Artisti2.nomeA = "Tiziano"
+AND Musei.nomeM = "National Gallery"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+

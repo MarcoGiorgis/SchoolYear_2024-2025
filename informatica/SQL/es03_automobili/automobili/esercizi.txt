@@ -1,0 +1,128 @@
+1)
+SELECT a.targa, a.marca
+FROM AUTO AS a
+WHERE a.potenza>120 OR a.cilindrata > 2000
+
+2)
+SELECT p.nome, a.targa
+FROM AUTO AS a, PROPRIETARI AS p
+WHERE a.codF=p.codF
+AND a.cilindrata>2000
+
+3)
+SELECT a.targa, p.nome
+FROM AUTO AS a, PROPRIETARI AS p, ASSICURAZIONI AS ass
+WHERE a.codF=p.codF
+AND a.codAss=ass.codAss
+AND ass.nome = "SARA"
+AND (a.cilindrata>2000 OR a.potenza>120)
+
+4)
+SELECT a.targa, p.nome
+FROM AUTO AS a, PROPRIETARI AS p, ASSICURAZIONI AS ass, SINISTRI AS s, AUTOCOINVOLTE AS ac
+WHERE a.codF=p.codF
+AND a.codAss=ass.codAss
+AND ass.nome = "SARA"
+AND a.targa = ac.targa
+AND ac.codS=s.codS
+AND s.dataIncidente='20/01/02'
+
+5)
+SELECT ass.nome, ass.sede, COUNT(*) as autoAssicurate
+FROM ASSICURAZIONI AS ass, AUTO AS a
+WHERE ass.codAss=a.codAss
+GROUP BY a.codAss
+
+6)
+SELECT ASSICURAZIONI.nome AS Assicurazione, COUNT(AUTOCOINVOLTE.dataRimborso) AS AutoRimborsate, COUNT(*) - COUNT(AUTOCOINVOLTE.dataRimborso) AS AutoNonRimborsate
+FROM ASSICURAZIONI, AUTO, AUTOCOINVOLTE 
+WHERE ASSICURAZIONI.codAss = AUTO.codAss
+AND AUTO.targa = AUTOCOINVOLTE.targa
+GROUP BY ASSICURAZIONI.nome
+
+7)
+SELECT a.targa, count(*) as nSinistri
+FROM AUTO AS a, AUTOCOINVOLTE AS ac
+WHERE a.targa = ac.targa
+AND a.marca="fiat"
+GROUP BY a.targa
+
+8)
+SELECT a.targa, ass.nome, sum(ac.importoDelDanno) as totDanni, count(*) as nSinistri
+FROM AUTO AS a, ASSICURAZIONI AS ass, AUTOCOINVOLTE AS ac
+WHERE a.targa = ac.targa
+AND a.codAss=ass.codAss
+GROUP BY a.targa
+HAVING nSinistri > 1
+ORDER BY nSinistri DESC
+
+
+10)--Targa delle auto che non sono state coinvolte in sinistri l'anno scorso
+SELECT targa
+FROM AUTO
+WHERE targa NOT IN (
+    SELECT targa
+    FROM AUTOCOINVOLTE ac
+    JOIN SINISTRI s ON ac.CodS = s.CodS
+    WHERE year(s.dataIncidente) = year(CURRENT_DATE)
+	--strftime('%Y', S.dataIncidente) = strftime('%Y', 'now', '-1 year')
+);
+
+
+11)--Codice dei sinistri in cui non sono state coinvolte auto con cilindrata inferiore a 2000 cc
+SELECT DISTINCT S.CodS
+FROM SINISTRI S
+WHERE S.CodS NOT IN (
+    SELECT AC.CodS
+    FROM AUTOCOINVOLTE AC, AUTO A
+    WHERE AC.Targa = A.Targa 
+    AND A.Cilindrata < 2000
+);
+
+
+12)--Nome dell’Assicurazione che ha gestito più sinistri   FARLA MANDARE DA MASOERO
+SELECT A.Nome
+FROM ASSICURAZIONI A, AUTO AU, AUTOCOINVOLTE AC
+WHERE A.CodAss = AU.CodAss AND AU.Targa = AC.Targa
+GROUP BY A.CodAss
+ORDER BY COUNT(AC.CodS) DESC
+
+
+13)--Creazione della tabella PERICOLOSE con le località con più di 5 incidenti, il numero di incidenti, il totale danni
+CREATE TABLE PERICOLOSE AS
+SELECT S.localita, COUNT(S.CodS) AS NumeroIncidenti, SUM(AC.ImportoDelDanno) AS TotaleDanni
+FROM SINISTRI S, AUTOCOINVOLTE AC
+WHERE S.CodS = AC.CodS
+GROUP BY S.localita
+HAVING COUNT(S.CodS) > 5
+ORDER BY TotaleDanni DESC;
+
+
+14)--Località che sono luogo di un sinistro o residenza di un proprietario
+SELECT DISTINCT P.Residenza AS Località
+FROM PROPRIETARI P
+UNION
+SELECT DISTINCT S.localita
+FROM SINISTRI S;
+
+
+15)--Località che sono luogo di un sinistro e anche residenza di un proprietario
+SELECT DISTINCT S.localita
+FROM SINISTRI S, PROPRIETARI P
+WHERE S.Località = P.Residenza;
+
+
+16)--Elenco dei sinistri avvenuti in località residenza di almeno un proprietario delle auto coinvolte
+SELECT DISTINCT S.CodS
+FROM SINISTRI S, AUTOCOINVOLTE AC, AUTO A, PROPRIETARI P
+WHERE S.CodS = AC.CodS AND AC.Targa = A.Targa AND A.CodF = P.CodF AND S.localita = P.Residenza;
+
+
+17)--Località che sono luogo di sinistro, ma non sono residenza di nessun proprietario BISOGNA USARE LEFT JOIN
+SELECT DISTINCT S.localita
+FROM SINISTRI S
+WHERE S.localita NOT IN (SELECT DISTINCT P.Residenza FROM PROPRIETARI P);
+
+
+
+

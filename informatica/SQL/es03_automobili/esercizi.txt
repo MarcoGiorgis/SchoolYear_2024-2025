@@ -1,0 +1,78 @@
+es1
+SELECT a.targa, a.marca
+FROM AUTO AS a
+WHERE a.potenza>120 OR a.cilindrata > 2000
+
+es2
+SELECT p.nome, a.targa
+FROM AUTO AS a, PROPRIETARI AS p
+WHERE a.codF=p.codF
+AND a.cilindrata>2000
+
+es3
+SELECT a.targa, p.nome
+FROM AUTO AS a, PROPRIETARI AS p, ASSICURAZIONI AS ass
+WHERE a.codF=p.codF
+AND a.codAss=ass.codAss
+AND ass.nome = "SARA"
+AND (a.cilindrata>2000 OR a.potenza>120)
+
+es4
+SELECT a.targa, p.nome
+FROM AUTO AS a, PROPRIETARI AS p, ASSICURAZIONI AS ass, SINISTRI AS s, AUTOCOINVOLTE AS ac
+WHERE a.codF=p.codF
+AND a.codAss=ass.codAss
+AND ass.nome = "SARA"
+AND a.targa = ac.targa
+AND ac.codS=s.codS
+AND s.dataIncidente='20/01/02'
+
+es5
+SELECT ass.nome, ass.sede, COUNT(*) as autoAssicurate
+FROM ASSICURAZIONI AS ass, AUTO AS a
+WHERE ass.codAss=a.codAss
+GROUP BY ass.nome, ass.sede, a.codAss
+
+es6
+SELECT ASSICURAZIONI.nome AS Assicurazione, COUNT(AUTOCOINVOLTE.dataRimborso) AS AutoRimborsate, COUNT(*) - COUNT(AUTOCOINVOLTE.dataRimborso) AS AutoNonRimborsate
+FROM ASSICURAZIONI, AUTO, AUTOCOINVOLTE 
+WHERE ASSICURAZIONI.codAss = AUTO.codAss
+AND AUTO.targa = AUTOCOINVOLTE.targa
+GROUP BY ASSICURAZIONI.nome
+
+es7
+SELECT a.targa, count(*) as nSinistri
+FROM AUTO AS a, AUTOCOINVOLTE AS ac
+WHERE a.targa = ac.targa
+AND a.marca="fiat"
+
+es8
+SELECT a.targa, ass.nome, sum(ac.importoDelDanno) as totDanni, count(*) as nSinistri
+FROM AUTO AS a, ASSICURAZIONI AS ass, AUTOCOINVOLTE AS ac
+WHERE a.targa = ac.targa
+AND a.codAss=ass.codAss
+GROUP BY a.targa
+HAVING nSinistri > 1
+ORDER BY nSinistri DESC
+
+es9
+CREATE VIEW "RICCHI" AS
+SELECT PROPRIETARI.CodF, PROPRIETARI.Nome, SUM(AUTOCONINVOLTE.ImportoDelDanno) AS "importo"
+FROM PROPRIETARI, AUTO, AUTOCONINVOLTE, SINISTRI
+WHERE PROPRIETARI.CodF = AUTO.CodF
+AND AUTO.Targa = AUTOCONINVOLTE.Targa
+AND AUTOCONINVOLTE.CodS = SINISTRI.CodS
+GROUP BY PROPRIETARI.Nome, PROPRIETARI.CodF
+HAVING count(*)>=1
+ORDER BY PROPRIETARI.Nome
+
+es14
+SELECT SINISTRI.Localita AS Localita
+FROM SINISTRI
+UNION 
+SELECR PROPRIETARI.Residenza AS Localita
+FROM PROPRIETARI
+
+es15
+SELECT DISTINCT SINISTRI.Localita AS localita
+FROM 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Controllo Semaforo</title>
+</head>
+<body>
+    <h1>Controllo Semaforo</h1>
+    
+    <form action="/configura_rosso" method="POST">
+        <label for="rosso">Durata rosso (secondi):</label>
+        <input type="number" id="rosso" name="rosso" min="1" required><br>
+        <button type="submit">Aggiorna rosso</button>
+    </form>
+        
+    <form action="/configura_giallo" method="POST">
+        <label for="giallo">Durata giallo (secondi):</label>
+        <input type="number" id="giallo" name="giallo" min="1" required><br>
+        <button type="submit">Aggiorna giallo</button>
+    </form>
+
+    <form action="/configura_verde" method="POST">
+        <label for="verde">Durata verde (secondi):</label>
+        <input type="number" id="verde" name="verde" min="1" required><br>
+        <button type="submit">Aggiorna verde</button>
+    </form>
+    
+    <form action="/spegnere_semaforo" method="POST">
+        <button type="submit">Spegni Semaforo</button>
+    </form>
+    
+    <form action="/attivare_semaforo" method="POST">
+        <button type="submit">Riattiva Semaforo</button>
+    </form>
+
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+    
+</body>
+</html>

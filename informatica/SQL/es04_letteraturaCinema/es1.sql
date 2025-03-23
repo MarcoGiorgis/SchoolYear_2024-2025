@@ -1,0 +1,3 @@
+SELECT Romanzi.Titolo
+FROM Romanzi
+WHERE Romanzi.Anno BETWEEN 1900 AND 2000

@@ -1,0 +1,63 @@
+ES1
+SELECT nome
+FROM sala
+WHERE citta = "Pisa"
+
+ES2
+SELECT titolo
+FROM film
+WHERE regista = "Fellini" AND annoProd > 1960
+
+ES3
+SELECT titolo, durata
+FROM film
+WHERE genere = "Fantascienza" AND annoProd > 1990 AND nazionalità = "francese" OR "giapponese"
+
+ES4
+SELECT titolo
+FROM film
+WHERE genere = "fantascienza" AND nazionalita = "giapponese" AND annoProd = 1990 OR nazionalita = "francese"
+
+ES5
+SELECT DISTINCT titolo, genere
+FROM film f, proiezione p
+WHERE p.dataProiezione = "2024-12-25" AND f.codFilm = p.codFilm
+
+ES6
+SELECT titolo, genere
+FROM film f, proiezione p, sala s
+WHERE s.citta LIKE "Napoli" AND p.dataProiezione = "2024-12-25" AND f.codFilm = p.codFilm 
+AND s.codSala = p.codSala
+
+ES7
+SELECT DISTINCT sale.nome
+FROM  proiezioni p, sale s, attori a, recita r
+WHERE p.data = "2024-12-25"
+AND s.citta = "Napoli"
+AND a.nome LIKE "%Williams%"
+AND r.codAttore = a.codAttore
+AND r.codFilm = p.codFilm
+and p.codSala = s.codSala
+
+VISUALIZZAZIONE TOTALE
+SELECT * 
+FROM Film, Attori, Proiezioni, Recita, Sale
+WHERE Film.CodFilm = Recita.CodF
+AND Recita.CodA = Attori.CodAttore
+AND Film.CodFilm = Proiezioni.CodF
+AND Sale.CodSala = Proiezioni.CodS
+
+ES8
+SELECT Titolo Nome (DISITINCT -> usato per non avere righe identiche)
+FROM film, attori, recita
+WHERE attori.nazionalita = "francese" AND film.codFilm = recita.codFilm
+AND recita.codAttore = attori.codAttore
+
+ES9
+SELECT DISTINCT Titolo, Nome
+FROM Film, Sale, Proiezioni
+WHERE Sale.Citta = "Pisa" AND strftime("%Y-%m", Proiezioni.DataProiezione) = "2005-1"
+AND Film.CodFilm = Proiezioni.CodF
+AND Proiezioni.CodS = Sale.CodSala
+
+ES10

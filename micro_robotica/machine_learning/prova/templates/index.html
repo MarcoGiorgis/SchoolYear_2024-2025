@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predizione Specie Pinguino</title>
+</head>
+<body>
+    <h1>Predizione della specie del Pinguino</h1>
+    <form method="POST">
+        <label for="beak_length">Lunghezza becco (mm):</label>
+        <input type="number" step="0.01" name="beak_length" required><br><br>
+        
+        <label for="beak_depth">Profondità becco (mm):</label>
+        <input type="number" step="0.01" name="beak_depth" required><br><br>
+        
+        <label for="flipper_length">Lunghezza pinna (mm):</label>
+        <input type="number" step="0.01" name="flipper_length" required><br><br>
+        
+        <label for="body_mass">Peso (g):</label>
+        <input type="number" step="1" name="body_mass" required><br><br>
+        
+        <button type="submit">Prevedi Specie</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Specie Predetta: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>

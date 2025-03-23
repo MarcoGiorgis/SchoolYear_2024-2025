@@ -1,0 +1,70 @@
+ES1
+SELECT Opere.codice, Opere.titolo
+FROM Opere, Artisti2, Musei
+WHERE Artisti2.nomeA = "Tiziano"
+AND Musei.nomeM = "National Gallery"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+ES2
+SELECT Opere.titolo
+FROM Opere, Artisti2
+WHERE Artisti2.nomeA = "Sconosciuto"
+AND Opere.codA = Artisti2.codA
+
+ES3
+SELECT Opere.codice, Opere.titolo
+FROM Opere
+WHERE Opere.codM IS NULL 
+ORDER BY Opere.titolo --ordinamento alfabetico
+
+ES4-5
+SELECT Artisti2.nomeA, Opere.titolo
+FROM Artisti2, Opere, Musei
+WHERE (Musei.nomeM = "Galleria degli Uffizi" OR Musei.nomeM = "National Gallery")
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+SELECT Artisti2.nomeA, Opere.titolo
+FROM Artisti2, Opere, Musei
+WHERE Musei.nomeM IN ("Galleria degli Uffizi", "National Gallery")
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+
+ES6
+SELECT Artisti2.nomeA, Opere.titolo
+FROM Artisti2, Opere, Musei
+WHERE Musei.citta = "Firenze"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+ES7
+SELECT DISTINCT Musei.citta
+FROM Artisti2, Opere, Musei
+WHERE Artisti2.nomeA = "Caravaggio"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+ES8
+SELECT Opere.codice, Opere.titolo
+FROM Artisti2, Opere, Musei
+WHERE Artisti2.nomeA = "Tiziano" AND Musei.citta = "Londra"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+ES9
+SELECT Artisti2.nomeA, Opere.titolo
+FROM Artisti2, Opere, Musei
+WHERE Artisti2.nazionalita = "Spagna" AND Musei.citta = "Firenze"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+
+ES10
+SELECT Opere.codice, Opere.titolo
+FROM Artisti2, Opere, Musei, Personaggi
+WHERE Artisti2.nazionalita = "Italia" AND Musei.citta = "Londra" AND Personaggi.Personaggio LIKE "%Madonna%"
+AND Opere.codA = Artisti2.codA
+AND Opere.codM = Musei.codM
+AND Personaggi.codice = Opere.codice
+

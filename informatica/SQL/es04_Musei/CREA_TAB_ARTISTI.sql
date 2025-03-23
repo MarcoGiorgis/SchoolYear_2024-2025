@@ -1,0 +1,6 @@
+CREATE TABLE "Artisti" (
+	"codA"	INTEGER UNIQUE,
+	"nomeA"	VARCHAR(30) NOT NULL,
+	"nazionalita"	CHAR(3) NOT NULL UNIQUE,
+	PRIMARY KEY("codA" AUTOINCREMENT)
+);
